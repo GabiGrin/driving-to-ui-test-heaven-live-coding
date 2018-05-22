@@ -5,7 +5,7 @@ import { Page } from 'puppeteer';
 export const createPuppeteerDriver = (page: Page) => {
 	return {
 		value: async () => {
-			return page.evaluate(() => document.querySelector('.counter .value').textContent);
+			return page.$eval('.counter .value', (e) => e.textContent);
 		},
 		increment: async () => {
 			await page.click('.counter .increment');

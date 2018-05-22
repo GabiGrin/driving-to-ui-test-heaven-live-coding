@@ -6,29 +6,38 @@ app.use(express.static('dist'));
 
 app.get('/', (_, res) => {
 	const template = `
+	<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
 	<style>
+		body {
+			font-family: 'Sunflower', sans-serif;
+			background: #6f309f;
+			color: white;
+			font-size: 150px;
+		}
 		#root {
 			margin: 0 auto;
 			width: 800px;
+			padding-top: 200px;
+			text-align: center;
 		}
 		.counter {
-			font-size: 30px;
 			display: flex;
 			max-width: 400px;
-			flex-align: center;
+			align-items: center;
+			margin: auto;
 		}
 		.counter button {
 			flex: 0;
-			margin: 20px;
-			font-size: 30px;
-			border-radius: 41px;
-			height: 50px;
-			width: 50px;
+			font-size: 80px;
+			color: white;
+			border: none;
+			color: #eb574f;
+			background: none;
+			cursor: pointer;
 		}
 
 		.counter .value {
 			flex: 1;
-			font-size: 50px;
 			font-weight: 500;
 		}
 	</style>

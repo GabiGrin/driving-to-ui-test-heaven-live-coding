@@ -45,7 +45,7 @@ exports.createPuppeteerDriver = function (page) {
     return {
         value: function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, page.evaluate(function () { return document.querySelector('.counter .value').textContent; })];
+                return [2 /*return*/, page.$eval('.counter .value', function (e) { return e.textContent; })];
             });
         }); },
         increment: function () { return __awaiter(_this, void 0, void 0, function () {
