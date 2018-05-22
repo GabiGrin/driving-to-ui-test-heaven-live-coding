@@ -1,52 +1,62 @@
-import {Builder, ThenableWebDriver, By} from 'selenium-webdriver';
+import puppeteer from 'puppeteer';
 import { assert } from 'chai';
 
-const createDriver = (wd: ThenableWebDriver) => {
+
+const createDriver = (page: puppeteer.Page) => {
 	return {
 		value: async () => {
-			const rawValue = await wd.findElement(By.css('.counter .value')).getText();
-			return parseInt(rawValue, 10);
+			return page.evaluate(() => document.querySelector('.counter .value').textContent);
 		},
 		increment: async () => {
-			await wd.findElement(By.css('.counter .increment')).click();
+			await page.click('.counter .increment');
 		},
 		decrement: async () => {
-			await wd.findElement(By.css('.counter .decrement')).click();
+			await page.click('.counter .decrement');
 		}
-	}
-}
+	};
+};
+
+/*
+const page = await browser.newPage();
+	await page.goto(url, {waitUntil: 'networkidle2'});
+	return page;
+
+	browser = await puppeteer.launch();
+
+	let browser: puppeteer.Browser;
+
+*/
 
 describe('counter', () => {
 
 	let browser;
-	let wd: ThenableWebDriver;
+	let page: puppeteer.Page;
+
 	before(async () => {
+		browser = await puppeteer.launch({headless: false, slowMo: 200});
+		page = await browser.newPage();
+	});
 
-		wd = new Builder()
-		.forBrowser('chrome')
-		.build();
-		});
-
-	after(() => wd.close());
+	after(() => browser.close());
 
 	beforeEach(async () => {
-		await wd.get('http://localhost:8080');
+		await page.goto('http://localhost:8080', {waitUntil: 'networkidle2'});
 	});
 
 	it('renders with default value 0', async () => {
-		const driver = createDriver(wd);
+		const driver = createDriver(page);
 		assert.equal(await driver.value(), 0);
 	});
 
 	it('increments value', async () => {
-		const driver = createDriver(wd);
+		const driver = createDriver(page);
 
 		await driver.increment();
 		assert.equal(await driver.value(), 1);
 	});
 
 	it('decrements value', async () => {
-		const driver = createDriver(wd);
+		const driver = createDriver(page);
 
 		await driver.decrement();
 		assert.equal(await driver.value(), -1);

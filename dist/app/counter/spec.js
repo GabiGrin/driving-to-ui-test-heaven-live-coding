@@ -11,11 +11,6 @@ var React = __importStar(require("react"));
 var chai_1 = require("chai");
 var _1 = require(".");
 var test_utils_1 = require("../test-utils");
-var simulateClick = function (element) {
-    var event = document.createEvent('HTMLEvents');
-    event.initEvent('click', true, false);
-    element.dispatchEvent(event);
-};
 var createDriver = function (element) {
     return {
         value: function () {
@@ -24,11 +19,11 @@ var createDriver = function (element) {
         },
         increment: function () {
             var incBtn = element.querySelector('.increment');
-            simulateClick(incBtn);
+            test_utils_1.simulateClick(incBtn);
         },
         decrement: function () {
             var decBtn = element.querySelector('.decrement');
-            simulateClick(decBtn);
+            test_utils_1.simulateClick(decBtn);
         }
     };
 };

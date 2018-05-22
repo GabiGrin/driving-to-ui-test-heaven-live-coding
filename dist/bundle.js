@@ -24,7 +24,7 @@ var Counter = /** @class */ (function (_super) {
     function Counter() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            value: 0
+            value: _this.props.initialValue || 0
         };
         _this.increment = function () { return _this.setState({ value: _this.state.value + 1 }); };
         _this.decrement = function () { return _this.setState({ value: _this.state.value - 1 }); };

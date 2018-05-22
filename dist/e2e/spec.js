@@ -34,27 +34,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+}
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var selenium_webdriver_1 = require("selenium-webdriver");
+var puppeteer_1 = __importDefault(require("puppeteer"));
 var chai_1 = require("chai");
-var createDriver = function (wd) {
+var createDriver = function (page) {
     return {
         value: function () { return __awaiter(_this, void 0, void 0, function () {
-            var rawValue;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, wd.findElement(selenium_webdriver_1.By.css('.counter .value')).getText()];
-                    case 1:
-                        rawValue = _a.sent();
-                        return [2 /*return*/, parseInt(rawValue, 10)];
-                }
+                return [2 /*return*/, page.evaluate(function () { return document.querySelector('.counter .value').textContent; })];
             });
         }); },
         increment: function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, wd.findElement(selenium_webdriver_1.By.css('.counter .increment')).click()];
+                    case 0: return [4 /*yield*/, page.click('.counter .increment')];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -64,7 +61,7 @@ var createDriver = function (wd) {
         decrement: function () { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, wd.findElement(selenium_webdriver_1.By.css('.counter .decrement')).click()];
+                    case 0: return [4 /*yield*/, page.click('.counter .decrement')];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -73,22 +70,37 @@ var createDriver = function (wd) {
         }); }
     };
 };
+/*
+const page = await browser.newPage();
+    await page.goto(url, {waitUntil: 'networkidle2'});
+    return page;
+
+    browser = await puppeteer.launch();
+
+    let browser: puppeteer.Browser;
+
+*/
 describe('counter', function () {
     var browser;
-    var wd;
+    var page;
     before(function () { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            wd = new selenium_webdriver_1.Builder()
-                .forBrowser('chrome')
-                .build();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, puppeteer_1.default.launch({ headless: false, slowMo: 400 })];
+                case 1:
+                    browser = _a.sent();
+                    return [4 /*yield*/, browser.newPage()];
+                case 2:
+                    page = _a.sent();
+                    return [2 /*return*/];
+            }
         });
     }); });
-    after(function () { return wd.close(); });
+    after(function () { return browser.close(); });
     beforeEach(function () { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, wd.get('http://localhost:8080')];
+                case 0: return [4 /*yield*/, page.goto('http://localhost:8080', { waitUntil: 'networkidle2' })];
                 case 1:
                     _a.sent();
                     return [2 /*return*/];
@@ -100,7 +112,7 @@ describe('counter', function () {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    driver = createDriver(wd);
+                    driver = createDriver(page);
                     _b = (_a = chai_1.assert).equal;
                     return [4 /*yield*/, driver.value()];
                 case 1:
@@ -114,7 +126,7 @@ describe('counter', function () {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    driver = createDriver(wd);
+                    driver = createDriver(page);
                     return [4 /*yield*/, driver.increment()];
                 case 1:
                     _c.sent();
@@ -131,7 +143,7 @@ describe('counter', function () {
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
-                    driver = createDriver(wd);
+                    driver = createDriver(page);
                     return [4 /*yield*/, driver.decrement()];
                 case 1:
                     _c.sent();
