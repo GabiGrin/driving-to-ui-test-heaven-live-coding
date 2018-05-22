@@ -1,8 +1,7 @@
 import puppeteer from 'puppeteer';
 import { assert } from 'chai';
 
-
-const createPuppeteerDriver = (page: puppeteer.Page) => {
+export const createPuppeteerDriver = (page: puppeteer.Page) => {
 	return {
 		value: async () => {
 			return page.evaluate(() => document.querySelector('.counter .value').textContent);

@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { Counter } from '.';
 import { renderComponent, simulateClick } from '../test-utils';
 
-const createReactDriver = (element: HTMLElement) => {
+export const createReactDriver = (element: HTMLElement) => {
 	return {
 		value: () => {
 			const rawValue = element.querySelector('.value').textContent;
