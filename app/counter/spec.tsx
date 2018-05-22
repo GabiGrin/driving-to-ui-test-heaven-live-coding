@@ -3,7 +3,7 @@ import { assert } from 'chai';
 import { Counter } from '.';
 import { renderComponent, simulateClick } from '../test-utils';
 
-const createDriver = (element: HTMLElement) => {
+const createReactDriver = (element: HTMLElement) => {
 	return {
 		value: () => {
 			const rawValue = element.querySelector('.value').textContent;
@@ -24,13 +24,13 @@ describe('counter', () => {
 
 	it('shows 0 as default value', () => {
 		const element = renderComponent(<Counter/>);
-		const driver = createDriver(element);
+		const driver = createReactDriver(element);
 		assert.equal(driver.value(), 0);
 	});
 
 	it('increments value', () => {
 		const element = renderComponent(<Counter/>);
-		const driver = createDriver(element);
+		const driver = createReactDriver(element);
 
 		driver.increment();
 		assert.equal(driver.value(), 1);
@@ -38,7 +38,7 @@ describe('counter', () => {
 
 	it('decrements value', () => {
 		const element = renderComponent(<Counter/>);
-		const driver = createDriver(element);
+		const driver = createReactDriver(element);
 
 		driver.decrement();
 		assert.equal(driver.value(), -1);
@@ -46,7 +46,7 @@ describe('counter', () => {
 
 	it('shows initial value', () => {
 		const element = renderComponent(<Counter initialValue={7}/>);
-		const driver = createDriver(element);
+		const driver = createReactDriver(element);
 
 		assert.equal(driver.value(), 7);
 	});
