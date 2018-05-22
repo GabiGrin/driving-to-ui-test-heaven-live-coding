@@ -33,21 +33,21 @@ describe('counter', () => {
 
 	it('renders with default value 0', async () => {
 		const driver = createPuppeteerDriver(page);
-		assert.equal(await driver.value(), 0);
+		assert.equal(await driver.value(), '0');
 	});
 
-	it('increments value', async () => {
+	it('increments the value', async () => {
 		const driver = createPuppeteerDriver(page);
 
 		await driver.increment();
-		assert.equal(await driver.value(), 1);
+		assert.equal(await driver.value(), '1');
 	});
 
-	it('decrements value', async () => {
+	it('decrements the value', async () => {
 		const driver = createPuppeteerDriver(page);
 
 		await driver.decrement();
-		assert.equal(await driver.value(), -1);
+		assert.equal(await driver.value(), '-1');
 	});
 });
 

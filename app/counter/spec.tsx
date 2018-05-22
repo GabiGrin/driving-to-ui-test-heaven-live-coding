@@ -6,8 +6,7 @@ import { renderComponent, simulateClick } from '../test-utils';
 export const createReactDriver = (element: HTMLElement) => {
 	return {
 		value: () => {
-			const rawValue = element.querySelector('.value').textContent;
-			return parseInt(rawValue);
+			return element.querySelector('.value').textContent;
 		},
 		increment: () => {
 			const incBtn = element.querySelector('.increment');
@@ -25,7 +24,7 @@ describe('counter', () => {
 	it('shows 0 as default value', () => {
 		const element = renderComponent(<Counter/>);
 		const driver = createReactDriver(element);
-		assert.equal(driver.value(), 0);
+		assert.equal(driver.value(), '0');
 	});
 
 	it('increments value', () => {
@@ -33,7 +32,7 @@ describe('counter', () => {
 		const driver = createReactDriver(element);
 
 		driver.increment();
-		assert.equal(driver.value(), 1);
+		assert.equal(driver.value(), '1');
 	});
 
 	it('decrements value', () => {
@@ -41,14 +40,14 @@ describe('counter', () => {
 		const driver = createReactDriver(element);
 
 		driver.decrement();
-		assert.equal(driver.value(), -1);
+		assert.equal(driver.value(), '-1');
 	});
 
 	it('shows initial value', () => {
 		const element = renderComponent(<Counter initialValue={7}/>);
 		const driver = createReactDriver(element);
 
-		assert.equal(driver.value(), 7);
+		assert.equal(driver.value(), '7');
 	});
 
 });

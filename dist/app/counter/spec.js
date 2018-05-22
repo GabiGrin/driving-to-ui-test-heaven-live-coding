@@ -11,11 +11,10 @@ var React = __importStar(require("react"));
 var chai_1 = require("chai");
 var _1 = require(".");
 var test_utils_1 = require("../test-utils");
-var createDriver = function (element) {
+exports.createReactDriver = function (element) {
     return {
         value: function () {
-            var rawValue = element.querySelector('.value').textContent;
-            return parseInt(rawValue);
+            return element.querySelector('.value').textContent;
         },
         increment: function () {
             var incBtn = element.querySelector('.increment');
@@ -30,24 +29,24 @@ var createDriver = function (element) {
 describe('counter', function () {
     it('shows 0 as default value', function () {
         var element = test_utils_1.renderComponent(React.createElement(_1.Counter, null));
-        var driver = createDriver(element);
-        chai_1.assert.equal(driver.value(), 0);
+        var driver = exports.createReactDriver(element);
+        chai_1.assert.equal(driver.value(), '0');
     });
     it('increments value', function () {
         var element = test_utils_1.renderComponent(React.createElement(_1.Counter, null));
-        var driver = createDriver(element);
+        var driver = exports.createReactDriver(element);
         driver.increment();
-        chai_1.assert.equal(driver.value(), 1);
+        chai_1.assert.equal(driver.value(), '1');
     });
     it('decrements value', function () {
         var element = test_utils_1.renderComponent(React.createElement(_1.Counter, null));
-        var driver = createDriver(element);
+        var driver = exports.createReactDriver(element);
         driver.decrement();
-        chai_1.assert.equal(driver.value(), -1);
+        chai_1.assert.equal(driver.value(), '-1');
     });
     it('shows initial value', function () {
         var element = test_utils_1.renderComponent(React.createElement(_1.Counter, { initialValue: 7 }));
-        var driver = createDriver(element);
-        chai_1.assert.equal(driver.value(), 7);
+        var driver = exports.createReactDriver(element);
+        chai_1.assert.equal(driver.value(), '7');
     });
 });
