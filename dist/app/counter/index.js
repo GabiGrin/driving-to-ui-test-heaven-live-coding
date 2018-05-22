@@ -33,7 +33,8 @@ var Counter = /** @class */ (function (_super) {
         return (React.createElement("div", { className: 'counter' },
             React.createElement("button", { onClick: this.decrement, className: 'decrement' }, "-"),
             React.createElement("span", { className: 'value' }, this.state.value),
-            React.createElement("button", { onClick: this.increment, className: 'increment' }, "+")));
+            React.createElement("button", { onClick: this.increment, className: 'increment' }, "+"),
+            React.createElement("button", { onClick: this.increment, className: 'increment' }, "42")));
     };
     return Counter;
 }(React.Component));

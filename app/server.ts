@@ -34,6 +34,7 @@ app.get('/', (_, res) => {
 			color: #eb574f;
 			background: none;
 			cursor: pointer;
+			margin: 20px;
 		}
 
 		.counter .value {
