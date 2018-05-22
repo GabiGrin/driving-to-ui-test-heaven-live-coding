@@ -1,7 +1,8 @@
 import puppeteer from 'puppeteer';
 import { assert } from 'chai';
+import { Page } from 'puppeteer';
 
-export const createPuppeteerDriver = (page: puppeteer.Page) => {
+export const createPuppeteerDriver = (page: Page) => {
 	return {
 		value: async () => {
 			return page.evaluate(() => document.querySelector('.counter .value').textContent);
@@ -18,7 +19,7 @@ export const createPuppeteerDriver = (page: puppeteer.Page) => {
 describe('counter', () => {
 
 	let browser;
-	let page: puppeteer.Page;
+	let page: Page;
 
 	before(async () => {
 		browser = await puppeteer.launch({headless: false, slowMo: 200});
