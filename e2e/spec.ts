@@ -9,9 +9,6 @@ export const createPuppeteerDriver = (page: Page) => {
 		},
 		increment: async () => {
 			await page.click('.counter .increment');
-		},
-		decrement: async () => {
-			await page.click('.counter .decrement');
 		}
 	};
 };
@@ -42,13 +39,6 @@ describe('counter', () => {
 
 		await driver.increment();
 		assert.equal(await driver.value(), '1');
-	});
-
-	it('decrements the value', async () => {
-		const driver = createPuppeteerDriver(page);
-
-		await driver.decrement();
-		assert.equal(await driver.value(), '-1');
 	});
 });
 

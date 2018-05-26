@@ -16,11 +16,11 @@ export class Counter extends React.Component<CounterProps, CounterState> {
 
 	increment = () => this.setState({value: this.state.value + 1});
 
-	decrement = () => this.setState({value: this.state.value - 1});
+	// decrement = () => this.setState({value: this.state.value - 1});
 
 	render() {
 		return (<div className='counter'>
-			<button onClick={this.decrement} className='decrement'>-</button>
+			{/* <button onClick={this.decrement} className='decrement'>-</button> */}
 			<span className='value'>{this.state.value}</span>
 			<button onClick={this.increment} className='increment'>+</button>
 		</div>);

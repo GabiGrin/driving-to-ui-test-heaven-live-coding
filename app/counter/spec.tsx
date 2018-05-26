@@ -11,10 +11,6 @@ export const createReactDriver = (element: HTMLElement) => {
 		increment: () => {
 			const incBtn = element.querySelector('.increment');
 			simulateClick(incBtn);
-		},
-		decrement: () => {
-			const decBtn = element.querySelector('.decrement');
-			simulateClick(decBtn);
 		}
 	}
 }
@@ -33,14 +29,6 @@ describe('counter', () => {
 
 		driver.increment();
 		assert.equal(driver.value(), '1');
-	});
-
-	it('decrements value', () => {
-		const element = renderComponent(<Counter/>);
-		const driver = createReactDriver(element);
-
-		driver.decrement();
-		assert.equal(driver.value(), '-1');
 	});
 
 });
