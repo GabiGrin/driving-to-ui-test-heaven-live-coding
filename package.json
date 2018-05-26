@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "e2e": "mocha dist/e2e/spec.js --timeout 20000",
+    "e2e": "npm run build && mocha dist/e2e/spec.js --timeout 20000",
     "test": "mocha dist/app/**/spec.js -r jsdom-global/register --timeout 20000",
     "start": "ts-node app/server.ts",
     "build": "tsc -p . && browserify dist/app/index.js > dist/bundle.js"

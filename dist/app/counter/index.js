@@ -26,12 +26,11 @@ var Counter = /** @class */ (function (_super) {
             value: _this.props.initialValue || 0
         };
         _this.increment = function () { return _this.setState({ value: _this.state.value + 1 }); };
-        _this.decrement = function () { return _this.setState({ value: _this.state.value - 1 }); };
         return _this;
     }
+    // decrement = () => this.setState({value: this.state.value - 1});
     Counter.prototype.render = function () {
         return (React.createElement("div", { className: 'counter' },
-            React.createElement("button", { onClick: this.decrement, className: 'decrement' }, "-"),
             React.createElement("span", { className: 'value' }, this.state.value),
             React.createElement("button", { onClick: this.increment, className: 'increment' }, "+")));
     };

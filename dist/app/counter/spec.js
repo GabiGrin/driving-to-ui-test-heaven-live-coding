@@ -19,10 +19,6 @@ exports.createReactDriver = function (element) {
         increment: function () {
             var incBtn = element.querySelector('.increment');
             test_utils_1.simulateClick(incBtn);
-        },
-        decrement: function () {
-            var decBtn = element.querySelector('.decrement');
-            test_utils_1.simulateClick(decBtn);
         }
     };
 };
@@ -37,16 +33,5 @@ describe('counter', function () {
         var driver = exports.createReactDriver(element);
         driver.increment();
         chai_1.assert.equal(driver.value(), '1');
-    });
-    it('decrements value', function () {
-        var element = test_utils_1.renderComponent(React.createElement(_1.Counter, null));
-        var driver = exports.createReactDriver(element);
-        driver.decrement();
-        chai_1.assert.equal(driver.value(), '-1');
-    });
-    it('shows initial value', function () {
-        var element = test_utils_1.renderComponent(React.createElement(_1.Counter, { initialValue: 7 }));
-        var driver = exports.createReactDriver(element);
-        chai_1.assert.equal(driver.value(), '7');
     });
 });

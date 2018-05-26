@@ -57,16 +57,6 @@ exports.createPuppeteerDriver = function (page) {
                         return [2 /*return*/];
                 }
             });
-        }); },
-        decrement: function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, page.click('.counter .decrement')];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
         }); }
     };
 };
@@ -124,23 +114,6 @@ describe('counter', function () {
                     return [4 /*yield*/, driver.value()];
                 case 2:
                     _b.apply(_a, [_c.sent(), '1']);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('decrements the value', function () { return __awaiter(_this, void 0, void 0, function () {
-        var driver, _a, _b;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    driver = exports.createPuppeteerDriver(page);
-                    return [4 /*yield*/, driver.decrement()];
-                case 1:
-                    _c.sent();
-                    _b = (_a = chai_1.assert).equal;
-                    return [4 /*yield*/, driver.value()];
-                case 2:
-                    _b.apply(_a, [_c.sent(), '-1']);
                     return [2 /*return*/];
             }
         });
