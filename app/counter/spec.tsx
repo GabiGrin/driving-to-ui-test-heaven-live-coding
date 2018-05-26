@@ -43,11 +43,4 @@ describe('counter', () => {
 		assert.equal(driver.value(), '-1');
 	});
 
-	it('shows initial value', () => {
-		const element = renderComponent(<Counter initialValue={7}/>);
-		const driver = createReactDriver(element);
-
-		assert.equal(driver.value(), '7');
-	});
-
 });
