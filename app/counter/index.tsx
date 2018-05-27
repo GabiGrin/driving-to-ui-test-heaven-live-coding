@@ -20,7 +20,7 @@ export class Counter extends React.Component<CounterProps, CounterState> {
 
 	render() {
 		return (<div className='counter'>
-			{/* <button onClick={this.decrement} className='decrement'>-</button> */}
+			{/* <button onClick={this.decrement} className='decriment'>-</button> */}
 			<span className='value'>{this.state.value}</span>
 			<button onClick={this.increment} className='increment'>+</button>
 		</div>);
